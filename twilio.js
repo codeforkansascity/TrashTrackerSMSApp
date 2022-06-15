@@ -7,9 +7,9 @@ const conversationServiceSid = process.env.TWILIO_CONVERSATION_SERVICE_SID;
 const client = require("twilio")(accountSid, authToken);
 
 // Get Converation SID
-client.conversations.conversations
-  .create({ friendlyName: "My First Conversation" })
-  .then((conversation) => console.log(conversation.sid));
+// client.conversations.conversations
+//   .create({ friendlyName: "My First Conversation" })
+//   .then((conversation) => console.log(conversation.sid));
 
 // Get Conversation Service SID
 // client.conversations
@@ -42,21 +42,21 @@ client.conversations.conversations
 //   .then((message) => console.log(message.sid));
 
 // Reply a message sent to Twilio number
-// const http = require("http");
-// const express = require("express");
-// const MessagingResponse = require("twilio").twiml.MessagingResponse;
+const http = require("http");
+const express = require("express");
+const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
-// const app = express();
+const app = express();
 
-// app.post("/sms", (req, res) => {
-//   const twiml = new MessagingResponse();
+app.post("/sms", (req, res) => {
+  const twiml = new MessagingResponse();
 
-//   twiml.message("Hi, I am having a lunch. I will reply you asap. Thanks.");
+  twiml.message("Hi, I am having a lunch. I will reply you asap. Thanks.");
 
-//   res.writeHead(200, { "Content-Type": "text/xml" });
-//   res.end(twiml.toString());
-// });
+  res.writeHead(200, { "Content-Type": "text/xml" });
+  res.end(twiml.toString());
+});
 
-// http.createServer(app).listen(1337, () => {
-//   console.log("Express server listening on port 1337");
-// });
+http.createServer(app).listen(1337, () => {
+  console.log("Express server listening on port 1337");
+});

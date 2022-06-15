@@ -1,0 +1,458 @@
+{
+  "description": "A New Flow",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "next": "initial_english_split",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "incomingCall"
+        },
+        {
+          "event": "incomingConversationMessage"
+        },
+        {
+          "event": "incomingRequest"
+        },
+        {
+          "event": "incomingParent"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "name": "final_confirmation",
+      "type": "send-message",
+      "transitions": [
+        {
+          "event": "sent"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1040,
+          "y": 1830
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}",
+        "body": "Got it. We will add it to our cleanup\nlist. Thank you for using Trash\nTracker."
+      }
+    },
+    {
+      "name": "initial_spanish_reply",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "regular_spanish_split",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -560,
+          "y": 1790
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Gracias por contactar a Trash Tracker. Si desea informar sobre el vertido, envíe un mensaje de texto con \"Ubicación: [Ingrese la ubicación del vertido]\" u \"Objeto: [Ingrese lo que se vierte allí]\".",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "after_location_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "final_confirmation",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 650,
+          "y": 1330
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Thank you. It looks like you sent us\nlocation info. What is dumped there?",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "after_object_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "final_confirmation",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1020,
+          "y": 790
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Thank you. You can send us a picture or tell us more about the location to help us identify where it is.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "sorry_no_match_english",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "regular_english_split",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -1090,
+          "y": 550
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Sorry, I don't understand. Please include one of the following keywords to indicate what you would like to say:  Español, Location, Object.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "after_ubicacion_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "confirmacion_final",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -510,
+          "y": 2580
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Gracias. Parece que nos enviaste\ninformación de ubicación ¿Qué se tira allí? Si puede enviar una foto, nos ayudará a identificar la ubicación.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "after_objeto_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "confirmacion_final",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -80,
+          "y": 2410
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Gracias. Puede enviarnos una foto o contarnos más sobre la ubicación para ayudarnos a identificar dónde está.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "confirmacion_final",
+      "type": "send-message",
+      "transitions": [
+        {
+          "event": "sent"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -330,
+          "y": 2810
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "to": "{{contact.channel.address}}",
+        "body": "Entiendo. Lo añadiremos a nuestra limpieza.\nlista. Gracias por usar Papelera\nRastreador."
+      }
+    },
+    {
+      "name": "sorry_no_match_spanish",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "regular_spanish_split",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -1540,
+          "y": 2350
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Lo siento, no entiendo. Incluya una de las siguientes palabras clave para indicar lo que le gustaría decir: español, ubicación, objeto.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "regular_english_split",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "sorry_no_match_english",
+          "event": "noMatch"
+        },
+        {
+          "next": "after_location_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Location",
+              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "Location"
+            }
+          ]
+        },
+        {
+          "next": "after_object_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Object",
+              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "Object"
+            }
+          ]
+        },
+        {
+          "next": "initial_spanish_reply",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Español",
+              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "Español"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.initial_no_match_reply.inbound.Body}}",
+        "offset": {
+          "x": -620,
+          "y": 700
+        }
+      }
+    },
+    {
+      "name": "initial_no_match_reply",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "regular_english_split",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -350,
+          "y": 520
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Thank you for contacting Trash Tracker. If you want to report a dumping, please text \"Location: [Enter the location of the dumping]\" or \"Object: [Enter what is dumped there]\". You can say \"Español\" for Spanish. Please describe in detail to help us identify the location and object.",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "initial_english_split",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "initial_no_match_reply",
+          "event": "noMatch"
+        },
+        {
+          "next": "after_location_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Location",
+              "arguments": ["{{trigger.message.Body}}"],
+              "type": "equal_to",
+              "value": "Location"
+            }
+          ]
+        },
+        {
+          "next": "after_object_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Object",
+              "arguments": ["{{trigger.message.Body}}"],
+              "type": "equal_to",
+              "value": "Object"
+            }
+          ]
+        },
+        {
+          "next": "initial_spanish_reply",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Español",
+              "arguments": ["{{trigger.message.Body}}"],
+              "type": "equal_to",
+              "value": "Español"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{trigger.message.Body}}",
+        "offset": {
+          "x": 10,
+          "y": 290
+        }
+      }
+    },
+    {
+      "name": "regular_spanish_split",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "sorry_no_match_spanish",
+          "event": "noMatch"
+        },
+        {
+          "next": "after_ubicacion_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to ubicacion",
+              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "ubicacion"
+            }
+          ]
+        },
+        {
+          "next": "after_objeto_confirmed",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to Objeto",
+              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "Objeto"
+            }
+          ]
+        },
+        {
+          "next": "initial_no_match_reply",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to English",
+              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
+              "type": "equal_to",
+              "value": "English"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.initial_spanish_reply.inbound.Body}}",
+        "offset": {
+          "x": -680,
+          "y": 2100
+        }
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}
