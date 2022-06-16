@@ -34,6 +34,7 @@
       "type": "send-message",
       "transitions": [
         {
+          "next": "http_request_english",
           "event": "sent"
         },
         {
@@ -219,6 +220,7 @@
       "type": "send-message",
       "transitions": [
         {
+          "next": "http_request_spanish",
           "event": "sent"
         },
         {
@@ -279,7 +281,7 @@
             {
               "friendly_name": "If value equal_to Location",
               "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Location"
             }
           ]
@@ -291,7 +293,7 @@
             {
               "friendly_name": "If value equal_to Object",
               "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Object"
             }
           ]
@@ -303,7 +305,7 @@
             {
               "friendly_name": "If value equal_to Español",
               "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Español"
             }
           ]
@@ -359,7 +361,7 @@
             {
               "friendly_name": "If value equal_to Location",
               "arguments": ["{{trigger.message.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Location"
             }
           ]
@@ -371,7 +373,7 @@
             {
               "friendly_name": "If value equal_to Object",
               "arguments": ["{{trigger.message.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Object"
             }
           ]
@@ -383,8 +385,8 @@
             {
               "friendly_name": "If value equal_to Español",
               "arguments": ["{{trigger.message.Body}}"],
-              "type": "equal_to",
-              "value": "Español"
+              "type": "contains",
+              "value": "Espanol"
             }
           ]
         }
@@ -412,7 +414,7 @@
             {
               "friendly_name": "If value equal_to ubicacion",
               "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "ubicacion"
             }
           ]
@@ -424,7 +426,7 @@
             {
               "friendly_name": "If value equal_to Objeto",
               "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "Objeto"
             }
           ]
@@ -436,7 +438,7 @@
             {
               "friendly_name": "If value equal_to English",
               "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
-              "type": "equal_to",
+              "type": "contains",
               "value": "English"
             }
           ]
@@ -448,6 +450,70 @@
           "x": -680,
           "y": 2100
         }
+      }
+    },
+    {
+      "name": "http_request_english",
+      "type": "make-http-request",
+      "transitions": [
+        {
+          "event": "success"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 1050,
+          "y": 2140
+        },
+        "method": "POST",
+        "content_type": "application/x-www-form-urlencoded;charset=utf-8",
+        "body": "{{flow.data}}",
+        "parameters": [
+          {
+            "value": "{{widgets.after_location_confirmed.inbound.Body}}",
+            "key": "location1"
+          },
+          {
+            "value": "{{widgets.after_object_confirmed.inbound.Body}}",
+            "key": "object1"
+          }
+        ],
+        "url": "https://0181-136-35-208-96.ngrok.io"
+      }
+    },
+    {
+      "name": "http_request_spanish",
+      "type": "make-http-request",
+      "transitions": [
+        {
+          "event": "success"
+        },
+        {
+          "event": "failed"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -320,
+          "y": 3100
+        },
+        "method": "POST",
+        "content_type": "application/x-www-form-urlencoded;charset=utf-8",
+        "body": "{{flow.data}}",
+        "parameters": [
+          {
+            "value": "{{widgets.after_ubicacion_confirmed.inbound.Body}}",
+            "key": "ubicacion1"
+          },
+          {
+            "value": "{{widgets.after_objeto_confirmed.inbound.Body}}",
+            "key": "objeto1"
+          }
+        ],
+        "url": "https://0181-136-35-208-96.ngrok.io"
       }
     }
   ],

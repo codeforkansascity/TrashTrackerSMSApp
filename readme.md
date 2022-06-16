@@ -13,7 +13,7 @@ Trash Tracker is a simple, lightweight system that allows residents and staff of
 
 ## Installation
 
-To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from twilio.json in this repository.
+To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from [twilio.json](./twilio.json).
 
 Next, click on the Trigger Widget on the top and copy your webhook url from the Inspector Panel on the right hand. It should look like this:
 
@@ -30,7 +30,7 @@ Here is what the place looks like:
 
 Any users can send a text message to your Twilio phone number and start the conversation! The following photo shows an example:
 
-![An example photo](./example.jpg)
+![Example of text communication](./example_text_communication.jpg)
 
 ## Local Testing
 
@@ -40,7 +40,9 @@ To test local files, you need a webhook url on the public Internet. To do that, 
 $ ngrok http 1337
 ```
 
-Once you acquire a public url from ngrok, copy and paste it in Twilio Console > Phone Numbers > Manage > Active Numbers > Configure > Messaging > A Message Comes In. You will need to update the url everytime you run that script.
+Once you acquire a forwarding url from ngrok, copy and paste it in Twilio Console > Phone Numbers > Manage > Active Numbers > Configure > Messaging > A Message Comes In. If you are testing the http connection with Twilio Studio, paste it in http_request_english and http_request_spanish widgets in your Twilio Studio flow instead. You will need to update the url everytime you run that script. The below photo shows an example.
+
+![Example of http_request widget](./example_http_request_widget.jpg)
 
 ## License
 
