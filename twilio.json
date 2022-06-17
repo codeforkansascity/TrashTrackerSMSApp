@@ -6,7 +6,7 @@
       "type": "trigger",
       "transitions": [
         {
-          "next": "initial_english_split",
+          "next": "initial_reply",
           "event": "incomingMessage"
         },
         {
@@ -30,11 +30,11 @@
       }
     },
     {
-      "name": "final_confirmation",
+      "name": "final_object_confirmation",
       "type": "send-message",
       "transitions": [
         {
-          "next": "http_request_english",
+          "next": "http_request_english_1",
           "event": "sent"
         },
         {
@@ -43,8 +43,8 @@
       ],
       "properties": {
         "offset": {
-          "x": 1040,
-          "y": 1830
+          "x": 190,
+          "y": 1130
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
@@ -71,12 +71,12 @@
       "properties": {
         "offset": {
           "x": -560,
-          "y": 1790
+          "y": 1430
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Gracias por contactar a Trash Tracker. Si desea informar sobre el vertido, envíe un mensaje de texto con \"Ubicación: [Ingrese la ubicación del vertido]\" u \"Objeto: [Ingrese lo que se vierte allí]\".",
+        "body": "Gracias por contactar a Trash Tracker. Si desea informar sobre el vertido, envíe un mensaje de texto con \"Ubicación: [Ingrese la ubicación del vertido]\" y agregue una foto para ayudarnos a identificar la ubicación. Puedes decir \"English\" para inglés.",
         "timeout": "3600"
       }
     },
@@ -85,7 +85,7 @@
       "type": "send-and-wait-for-reply",
       "transitions": [
         {
-          "next": "final_confirmation",
+          "next": "final_object_confirmation",
           "event": "incomingMessage"
         },
         {
@@ -97,40 +97,13 @@
       ],
       "properties": {
         "offset": {
-          "x": 650,
-          "y": 1330
+          "x": 180,
+          "y": 780
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
         "body": "Thank you. It looks like you sent us\nlocation info. What is dumped there?",
-        "timeout": "3600"
-      }
-    },
-    {
-      "name": "after_object_confirmed",
-      "type": "send-and-wait-for-reply",
-      "transitions": [
-        {
-          "next": "final_confirmation",
-          "event": "incomingMessage"
-        },
-        {
-          "event": "timeout"
-        },
-        {
-          "event": "deliveryFailure"
-        }
-      ],
-      "properties": {
-        "offset": {
-          "x": 1020,
-          "y": 790
-        },
-        "service": "{{trigger.message.InstanceSid}}",
-        "channel": "{{trigger.message.ChannelSid}}",
-        "from": "{{flow.channel.address}}",
-        "body": "Thank you. You can send us a picture or tell us more about the location to help us identify where it is.",
         "timeout": "3600"
       }
     },
@@ -157,7 +130,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Sorry, I don't understand. Please include one of the following keywords to indicate what you would like to say:  Español, Location, Object.",
+        "body": "Sorry, I don't understand. Please include one of the following keywords to indicate what you would like to say:  Español, Location.",
         "timeout": "3600"
       }
     },
@@ -178,40 +151,13 @@
       ],
       "properties": {
         "offset": {
-          "x": -510,
-          "y": 2580
+          "x": -380,
+          "y": 2100
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
         "body": "Gracias. Parece que nos enviaste\ninformación de ubicación ¿Qué se tira allí? Si puede enviar una foto, nos ayudará a identificar la ubicación.",
-        "timeout": "3600"
-      }
-    },
-    {
-      "name": "after_objeto_confirmed",
-      "type": "send-and-wait-for-reply",
-      "transitions": [
-        {
-          "next": "confirmacion_final",
-          "event": "incomingMessage"
-        },
-        {
-          "event": "timeout"
-        },
-        {
-          "event": "deliveryFailure"
-        }
-      ],
-      "properties": {
-        "offset": {
-          "x": -80,
-          "y": 2410
-        },
-        "service": "{{trigger.message.InstanceSid}}",
-        "channel": "{{trigger.message.ChannelSid}}",
-        "from": "{{flow.channel.address}}",
-        "body": "Gracias. Puede enviarnos una foto o contarnos más sobre la ubicación para ayudarnos a identificar dónde está.",
         "timeout": "3600"
       }
     },
@@ -229,8 +175,8 @@
       ],
       "properties": {
         "offset": {
-          "x": -330,
-          "y": 2810
+          "x": -370,
+          "y": 2370
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
@@ -256,8 +202,8 @@
       ],
       "properties": {
         "offset": {
-          "x": -1540,
-          "y": 2350
+          "x": -1090,
+          "y": 2000
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
@@ -280,21 +226,9 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to Location",
-              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
+              "arguments": ["{{widgets.initial_reply.inbound.Body}}"],
               "type": "contains",
               "value": "Location"
-            }
-          ]
-        },
-        {
-          "next": "after_object_confirmed",
-          "event": "match",
-          "conditions": [
-            {
-              "friendly_name": "If value equal_to Object",
-              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
-              "type": "contains",
-              "value": "Object"
             }
           ]
         },
@@ -304,7 +238,7 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to Español",
-              "arguments": ["{{widgets.initial_no_match_reply.inbound.Body}}"],
+              "arguments": ["{{widgets.initial_reply.inbound.Body}}"],
               "type": "contains",
               "value": "Español"
             }
@@ -312,15 +246,15 @@
         }
       ],
       "properties": {
-        "input": "{{widgets.initial_no_match_reply.inbound.Body}}",
+        "input": "{{widgets.initial_reply.inbound.Body}}",
         "offset": {
-          "x": -620,
-          "y": 700
+          "x": 10,
+          "y": 490
         }
       }
     },
     {
-      "name": "initial_no_match_reply",
+      "name": "initial_reply",
       "type": "send-and-wait-for-reply",
       "transitions": [
         {
@@ -336,67 +270,14 @@
       ],
       "properties": {
         "offset": {
-          "x": -350,
-          "y": 520
+          "x": 0,
+          "y": 200
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Thank you for contacting Trash Tracker. If you want to report a dumping, please text \"Location: [Enter the location of the dumping]\" or \"Object: [Enter what is dumped there]\". You can say \"Español\" for Spanish. Please describe in detail to help us identify the location and object.",
+        "body": "Thank you for contacting Trash Tracker. If you want to report a dumping, please text \"Location: [Enter the location of the dumping]\" and add a photo to help us identify the location. You can say \"Español\" for Spanish.",
         "timeout": "3600"
-      }
-    },
-    {
-      "name": "initial_english_split",
-      "type": "split-based-on",
-      "transitions": [
-        {
-          "next": "initial_no_match_reply",
-          "event": "noMatch"
-        },
-        {
-          "next": "after_location_confirmed",
-          "event": "match",
-          "conditions": [
-            {
-              "friendly_name": "If value equal_to Location",
-              "arguments": ["{{trigger.message.Body}}"],
-              "type": "contains",
-              "value": "Location"
-            }
-          ]
-        },
-        {
-          "next": "after_object_confirmed",
-          "event": "match",
-          "conditions": [
-            {
-              "friendly_name": "If value equal_to Object",
-              "arguments": ["{{trigger.message.Body}}"],
-              "type": "contains",
-              "value": "Object"
-            }
-          ]
-        },
-        {
-          "next": "initial_spanish_reply",
-          "event": "match",
-          "conditions": [
-            {
-              "friendly_name": "If value equal_to Español",
-              "arguments": ["{{trigger.message.Body}}"],
-              "type": "contains",
-              "value": "Espanol"
-            }
-          ]
-        }
-      ],
-      "properties": {
-        "input": "{{trigger.message.Body}}",
-        "offset": {
-          "x": 10,
-          "y": 290
-        }
       }
     },
     {
@@ -415,24 +296,12 @@
               "friendly_name": "If value equal_to ubicacion",
               "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
               "type": "contains",
-              "value": "ubicacion"
+              "value": "ubicación"
             }
           ]
         },
         {
-          "next": "after_objeto_confirmed",
-          "event": "match",
-          "conditions": [
-            {
-              "friendly_name": "If value equal_to Objeto",
-              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
-              "type": "contains",
-              "value": "Objeto"
-            }
-          ]
-        },
-        {
-          "next": "initial_no_match_reply",
+          "next": "initial_reply",
           "event": "match",
           "conditions": [
             {
@@ -447,13 +316,13 @@
       "properties": {
         "input": "{{widgets.initial_spanish_reply.inbound.Body}}",
         "offset": {
-          "x": -680,
-          "y": 2100
+          "x": -550,
+          "y": 1770
         }
       }
     },
     {
-      "name": "http_request_english",
+      "name": "http_request_english_1",
       "type": "make-http-request",
       "transitions": [
         {
@@ -465,23 +334,27 @@
       ],
       "properties": {
         "offset": {
-          "x": 1050,
-          "y": 2140
+          "x": 190,
+          "y": 1380
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
-        "body": "{{flow.data}}",
+        "body": "",
         "parameters": [
           {
             "value": "{{widgets.after_location_confirmed.inbound.Body}}",
-            "key": "location1"
+            "key": "object"
           },
           {
-            "value": "{{widgets.after_object_confirmed.inbound.Body}}",
-            "key": "object1"
+            "value": "{{widgets.initial_reply.inbound.Body}}",
+            "key": "location"
+          },
+          {
+            "value": "{{trigger.message.From}}",
+            "key": "report_from"
           }
         ],
-        "url": "https://0181-136-35-208-96.ngrok.io"
+        "url": "https://38cb-23-228-141-73.ngrok.io"
       }
     },
     {
@@ -497,23 +370,27 @@
       ],
       "properties": {
         "offset": {
-          "x": -320,
-          "y": 3100
+          "x": -380,
+          "y": 2650
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
-        "body": "{{flow.data}}",
+        "body": "",
         "parameters": [
           {
-            "value": "{{widgets.after_ubicacion_confirmed.inbound.Body}}",
+            "value": "{{widgets.initial_spanish_reply.inbound.Body}}",
             "key": "ubicacion1"
           },
           {
-            "value": "{{widgets.after_objeto_confirmed.inbound.Body}}",
+            "value": "{{widgets.after_ubicacion_confirmed.inbound.Body}}",
             "key": "objeto1"
+          },
+          {
+            "value": "{{trigger.message.From}}",
+            "key": "report_from"
           }
         ],
-        "url": "https://0181-136-35-208-96.ngrok.io"
+        "url": "https://38cb-23-228-141-73.ngrok.io"
       }
     }
   ],

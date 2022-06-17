@@ -32,9 +32,19 @@ Any users can send a text message to your Twilio phone number and start the conv
 
 ![Example of text communication](./example_text_communication.jpg)
 
+After the conversation is complete, you can see the object, location, and reporting number logged in the command line.
+
+![Example of log messages](./example_console_log.jpg)
+
 ## Local Testing
 
-To test local files, you need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, enter the following command in your terminal:
+To test local files, run the following command:
+
+```bash
+$ node twilio.js
+```
+
+You also need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:
 
 ```bash
 $ ngrok http 1337
