@@ -43,8 +43,8 @@
       ],
       "properties": {
         "offset": {
-          "x": 190,
-          "y": 1130
+          "x": 590,
+          "y": 1320
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
@@ -76,7 +76,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Gracias por contactar a Trash Tracker. Si desea informar sobre el vertido, envíe un mensaje de texto con \"Ubicación: [Ingrese la ubicación del vertido]\" y agregue una foto para ayudarnos a identificar la ubicación. Puedes decir \"English\" para inglés.",
+        "body": "Gracias por contactar a Trash Tracker. Si desea informar sobre el vertido, envíe un mensaje de texto con \"Ubicación: [Ingrese la ubicación del vertido]\". Puedes decir \"English\" para inglés.",
         "timeout": "3600"
       }
     },
@@ -85,7 +85,7 @@
       "type": "send-and-wait-for-reply",
       "transitions": [
         {
-          "next": "final_object_confirmation",
+          "next": "after_photo_confirmed",
           "event": "incomingMessage"
         },
         {
@@ -103,7 +103,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Thank you. It looks like you sent us\nlocation info. What is dumped there?",
+        "body": "Thank you. It looks like you sent us\nlocation information. Can you send us a photo to help us identify the location?",
         "timeout": "3600"
       }
     },
@@ -139,7 +139,7 @@
       "type": "send-and-wait-for-reply",
       "transitions": [
         {
-          "next": "confirmacion_final",
+          "next": "after_foto_confirmed",
           "event": "incomingMessage"
         },
         {
@@ -157,7 +157,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Gracias. Parece que nos enviaste\ninformación de ubicación ¿Qué se tira allí? Si puede enviar una foto, nos ayudará a identificar la ubicación.",
+        "body": "Gracias. Parece que nos enviaste\nInformación sobre la ubicación. ¿Puedes enviarnos una foto para ayudarnos a identificar la ubicación?",
         "timeout": "3600"
       }
     },
@@ -175,8 +175,8 @@
       ],
       "properties": {
         "offset": {
-          "x": -370,
-          "y": 2370
+          "x": -380,
+          "y": 2890
         },
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
@@ -276,7 +276,7 @@
         "service": "{{trigger.message.InstanceSid}}",
         "channel": "{{trigger.message.ChannelSid}}",
         "from": "{{flow.channel.address}}",
-        "body": "Thank you for contacting Trash Tracker. If you want to report a dumping, please text \"Location: [Enter the location of the dumping]\" and add a photo to help us identify the location. You can say \"Español\" for Spanish.",
+        "body": "Thank you for contacting Trash Tracker. If you want to report a dumping, please text \"Location: [Enter the location of the dumping]\". You can say \"Español\" for Spanish.",
         "timeout": "3600"
       }
     },
@@ -334,15 +334,15 @@
       ],
       "properties": {
         "offset": {
-          "x": 190,
-          "y": 1380
+          "x": 600,
+          "y": 1670
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
         "body": "",
         "parameters": [
           {
-            "value": "{{widgets.after_location_confirmed.inbound.Body}}",
+            "value": "{{widgets.after_photo_confirmed.inbound.Body}}",
             "key": "object"
           },
           {
@@ -352,9 +352,17 @@
           {
             "value": "{{trigger.message.From}}",
             "key": "report_from"
+          },
+          {
+            "value": "{{widgets.after_location_confirmed.inbound.Body}}",
+            "key": "photo"
+          },
+          {
+            "value": "{{widgets.sorry_no_match_english.inbound.Body}}",
+            "key": "others"
           }
         ],
-        "url": "https://38cb-23-228-141-73.ngrok.io"
+        "url": "https://4544-136-35-208-96.ngrok.io"
       }
     },
     {
@@ -370,8 +378,8 @@
       ],
       "properties": {
         "offset": {
-          "x": -380,
-          "y": 2650
+          "x": -370,
+          "y": 3190
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -379,18 +387,80 @@
         "parameters": [
           {
             "value": "{{widgets.initial_spanish_reply.inbound.Body}}",
-            "key": "ubicacion1"
+            "key": "ubicacion"
           },
           {
-            "value": "{{widgets.after_ubicacion_confirmed.inbound.Body}}",
-            "key": "objeto1"
+            "value": "{{widgets.after_foto_confirmed.inbound.Body}}",
+            "key": "objeto"
           },
           {
             "value": "{{trigger.message.From}}",
             "key": "report_from"
+          },
+          {
+            "value": "{{widgets.after_ubicacion_confirmed.inbound.Body}}",
+            "key": "foto"
+          },
+          {
+            "value": "{{widgets.sorry_no_match_spanish.inbound.Body}}",
+            "key": "others"
           }
         ],
-        "url": "https://38cb-23-228-141-73.ngrok.io"
+        "url": "https://4544-136-35-208-96.ngrok.io"
+      }
+    },
+    {
+      "name": "after_photo_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "final_object_confirmation",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 610,
+          "y": 1000
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Great. What is dumped there?",
+        "timeout": "3600"
+      }
+    },
+    {
+      "name": "after_foto_confirmed",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "confirmacion_final",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -380,
+          "y": 2460
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "Excelente. ¿Qué se tira allí?",
+        "timeout": "3600"
       }
     }
   ],
