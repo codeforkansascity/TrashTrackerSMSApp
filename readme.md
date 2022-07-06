@@ -30,11 +30,11 @@ Here is what the place looks like:
 
 Any users can send a text message to your Twilio phone number and start the conversation! The following photo shows an example:
 
-![Example of text communication](./example_text_communication.jpg)
+![Example of text communication](./public/images/example_text_communication.jpg)
 
 After the conversation is complete, you can see the object, location, and reporting number logged in the command line.
 
-![Example of log messages](./example_console_log.jpg)
+![Example of log messages](./public/images/example_console_log.jpg)
 
 ## Local Development
 
@@ -52,7 +52,7 @@ $ ngrok http 1337
 
 Once you acquire a forwarding url from ngrok, copy and paste it in http_request_english and http_request_spanish widgets in your Twilio Studio flow. You will need to update the url everytime you run that script. The below photo shows an example.
 
-![Example of http_request widget](./example_http_request_widget.jpg)
+![Example of http_request widget](./public/images/example_http_request_widget.jpg)
 
 ## License
 
