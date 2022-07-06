@@ -5,6 +5,7 @@
   "main": "twilio.js",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "socket.io": "^4.5.1",
     "twilio": "^3.77.2"
