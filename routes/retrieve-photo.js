@@ -1,3 +1,5 @@
+// Reference: https://www.twilio.com/docs/sms/tutorials/how-to-receive-and-download-images-incoming-mms-node
+
 const express = require('express');
 const Twilio = require('twilio');
 const extName = require('ext-name');
@@ -24,6 +26,7 @@ function MessagingRouter() {
     return twilioClient || new Twilio(twilioAccountSid, twilioAuthToken);
   }
 
+  // delete media from twilio servers
   function deleteMediaItem(mediaItem) {
     const client = getTwilioClient();
 
@@ -33,6 +36,8 @@ function MessagingRouter() {
       .media(mediaItem.mediaSid).remove();
   }
 
+  // save media to local file system
+  // (these media are directly accessible on Twilio servers; saving them might not be necessary)
   async function SaveMedia(mediaItem) {
     const { mediaUrl, filename } = mediaItem;
     if (NODE_ENV !== 'test') {
@@ -51,17 +56,17 @@ function MessagingRouter() {
     }
   }
 
-
   async function handleIncomingSMS(req, res) {
     const { body } = req;
     const { NumMedia, From: SenderNumber, MessageSid } = body;
     let saveOperations = [];
     const mediaItems = [];
 
+    // extract media urls from request body
     for (var i = 0; i < NumMedia; i++) {  // eslint-disable-line
       const mediaUrl = body[`MediaUrl${i}`];
       const contentType = body[`MediaContentType${i}`];
-      const extension = extName.mime(contentType)[0].ext;
+      const extension = extName.mime(contentType)[0].ext; // map standard mime type to file extension
       const mediaSid = path.basename(urlUtil.parse(mediaUrl).pathname);
       const filename = `${mediaSid}.${extension}`;
 
@@ -83,7 +88,6 @@ function MessagingRouter() {
 
     return res.send(response.toString()).status(200);
   }
-
 
   function getRecentImages() {
     return images;
