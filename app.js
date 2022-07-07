@@ -4,7 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const { MessagingRouter } = require('./routes/messaging');
+const { MessagingRouter } = require('./routes/mms');
 
 const app = express();
 

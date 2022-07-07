@@ -13,7 +13,7 @@ Trash Tracker is a simple, lightweight system that allows residents and staff of
 
 ## Installation
 
-To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from [twilio.json](./twilio.json).
+To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from [flow.json](./public/assets/flow.json).
 
 <!-- Next, click on the Trigger Widget on the top and copy your webhook url from the Inspector Panel on the right hand. It should look like this:
 
@@ -41,7 +41,7 @@ After the conversation is complete, you can see the object, location, and report
 To test local files, run the following command:
 
 ```bash
-$ node twilio.js
+$ node {filename}
 ```
 
 You also need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:

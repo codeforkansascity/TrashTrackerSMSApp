@@ -1,17 +1,16 @@
-// This file records an action that can successfully send a message from a Twilio number to a Twilio or non-Twilio number. 
-// Note: the "to" and "from" number can't be the same.
-
 const config = require('./config');
 const Twilio = require('twilio');
 
 const { twilioAccountSid, twilioAuthToken, twilioPhoneNumber } = config;
 const client = new Twilio(twilioAccountSid, twilioAuthToken);
 
+// Below is an action that can successfully send a message from a Twilio number to a Twilio or non-Twilio number
+// Note: the "to" and "from" number can't be the same.
 client.messages
   .create({
-    to: twilioPhoneNumber,
+    to: +18169747106,
     from: twilioPhoneNumber,
-    body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-    mediaUrl: 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
+    body: 'Welcome to TrashTracker!',
+    mediaUrl: 'https://freesvg.org/img/cyberscooty-clean_man.png',
   })
-  .done();
+  .then((message) => console.log("message.sid: " + message.sid));
