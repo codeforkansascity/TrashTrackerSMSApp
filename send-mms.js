@@ -1,3 +1,6 @@
+// This file records an action that can successfully send a message from a Twilio number to a Twilio or non-Twilio number. 
+// Note: the "to" and "from" number can't be the same.
+
 const config = require('./config');
 const Twilio = require('twilio');
 

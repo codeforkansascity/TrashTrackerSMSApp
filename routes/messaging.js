@@ -1,5 +1,5 @@
 // Reference: https://www.twilio.com/docs/sms/tutorials/how-to-receive-and-download-images-incoming-mms-node
-
+// Reference: https://github.com/TwilioDevEd/receive-mms-node
 const express = require('express');
 const Twilio = require('twilio');
 const extName = require('ext-name');
@@ -76,17 +76,22 @@ function MessagingRouter() {
 
     await Promise.all(saveOperations);
 
-    const messageBody = NumMedia === 0 ?
-    'Send us an image!' :
-    `Thanks for sending us ${NumMedia} file(s)`;
+    // const messageBody =
+    //   NumMedia === 0
+    //     ? 'Send us an image!'
+    //     : `Thanks for sending us ${NumMedia} file(s)`;
 
-    const response = new MessagingResponse();
-    response.message({
-      from: twilioPhoneNumber,
-      to: SenderNumber,
-    }, messageBody);
+    // const response = new MessagingResponse();
+    // response.message(
+    //   {
+    //     from: twilioPhoneNumber,
+    //     to: SenderNumber,
+    //   },
+    //   messageBody,
+    // );
 
-    return res.send(response.toString()).status(200);
+    // return res.send(response.toString()).status(200);
+    return res.send("_________________routes/messaging____________________" + req);
   }
 
   function getRecentImages() {
