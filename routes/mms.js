@@ -61,6 +61,8 @@ function MessagingRouter() {
   // handle incoming MMS
   async function handleIncomingSMS(req, res) {
     const { body } = req;
+    // console.log(req) doesn't log any useful info, only [object, Object]
+    // console.log(req.body) and console.log(body) will get error of "Cannot convert object to primitive value"
     const { NumMedia, From: SenderNumber, MessageSid } = body;
     let saveOperations = [];
     const mediaItems = [];

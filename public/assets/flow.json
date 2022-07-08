@@ -226,7 +226,9 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to Location",
-              "arguments": ["{{widgets.initial_reply.inbound.Body}}"],
+              "arguments": [
+                "{{widgets.initial_reply.inbound.Body}}"
+              ],
               "type": "contains",
               "value": "Location"
             }
@@ -238,7 +240,9 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to Español",
-              "arguments": ["{{widgets.initial_reply.inbound.Body}}"],
+              "arguments": [
+                "{{widgets.initial_reply.inbound.Body}}"
+              ],
               "type": "contains",
               "value": "Español"
             }
@@ -294,7 +298,9 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to ubicacion",
-              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
+              "arguments": [
+                "{{widgets.initial_spanish_reply.inbound.Body}}"
+              ],
               "type": "contains",
               "value": "ubicación"
             }
@@ -306,7 +312,9 @@
           "conditions": [
             {
               "friendly_name": "If value equal_to English",
-              "arguments": ["{{widgets.initial_spanish_reply.inbound.Body}}"],
+              "arguments": [
+                "{{widgets.initial_spanish_reply.inbound.Body}}"
+              ],
               "type": "contains",
               "value": "English"
             }
@@ -339,11 +347,11 @@
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
-        "body": "",
+        "body": "{{trigger.message.MessageSid}}",
         "parameters": [
           {
             "value": "{{widgets.after_photo_confirmed.inbound.Body}}",
-            "key": "object"
+            "key": "trash"
           },
           {
             "value": "{{widgets.initial_reply.inbound.Body}}",
@@ -354,15 +362,15 @@
             "key": "report_from"
           },
           {
-            "value": "{{widgets.after_location_confirmed.inbound.Body}}",
-            "key": "photo"
+            "value": "{{widgets.after_location_confirmed.inbound.MediaUrl0}}",
+            "key": "photo_url"
           },
           {
             "value": "{{widgets.sorry_no_match_english.inbound.Body}}",
             "key": "others"
           }
         ],
-        "url": "https://4544-136-35-208-96.ngrok.io"
+        "url": "https://0d82-136-35-208-96.ngrok.io"
       }
     },
     {
@@ -383,7 +391,7 @@
         },
         "method": "POST",
         "content_type": "application/x-www-form-urlencoded;charset=utf-8",
-        "body": "",
+        "body": "{{trigger.message.MessageSid}}",
         "parameters": [
           {
             "value": "{{widgets.initial_spanish_reply.inbound.Body}}",
@@ -404,6 +412,10 @@
           {
             "value": "{{widgets.sorry_no_match_spanish.inbound.Body}}",
             "key": "others"
+          },
+          {
+            "value": "{{widgets.after_foto_confirmed.inbound.MediaUrl0}}",
+            "key": "foto_url"
           }
         ],
         "url": "https://4544-136-35-208-96.ngrok.io"

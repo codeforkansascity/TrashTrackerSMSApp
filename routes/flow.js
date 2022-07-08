@@ -1,4 +1,4 @@
-// This file can successfully log data from Twilio Studio Flow in the command line
+// This file can successfully log data and image URL from Twilio Studio Flow in the command line
 // Note: make sure you have configured webhook url in your Twilio console and your flow
 
 const config = require('../config');

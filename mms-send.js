@@ -8,7 +8,7 @@ const client = new Twilio(twilioAccountSid, twilioAuthToken);
 // Note: the "to" and "from" number can't be the same.
 client.messages
   .create({
-    to: +18169747106,
+    to: twilioPhoneNumber,
     from: twilioPhoneNumber,
     body: 'Welcome to TrashTracker!',
     mediaUrl: 'https://freesvg.org/img/cyberscooty-clean_man.png',
