@@ -368,6 +368,10 @@
           {
             "value": "{{widgets.sorry_no_match_english.inbound.Body}}",
             "key": "others"
+          },
+          {
+            "value": "{{widgets.final_object_confirmation.outbound.DateCreated}}",
+            "key": "date"
           }
         ],
         "url": "https://0d82-136-35-208-96.ngrok.io"
@@ -416,6 +420,10 @@
           {
             "value": "{{widgets.after_foto_confirmed.inbound.MediaUrl0}}",
             "key": "foto_url"
+          },
+          {
+            "value": "{{widgets.final_object_confirmation.outbound.DateCreated}}",
+            "key": "date"
           }
         ],
         "url": "https://4544-136-35-208-96.ngrok.io"
