@@ -491,6 +491,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dist-exiftool@npm:^10.53.0":
+  version: 10.53.0
+  resolution: "dist-exiftool@npm:10.53.0"
+  dependencies:
+    exiftool.exe: 10.53
+    exiftool.pl: 10.53
+    platform-dependent-modules: 0.0.14
+  dependenciesMeta:
+    exiftool.exe:
+      optional: true
+    exiftool.pl:
+      optional: true
+  checksum: 1c67471ecd711665b1019ca259b8730be0728a3630ee282715464e02d078ee2e7c665078394e0e429ea75cf29a54d256e18e263113e1bcb4f0f5c55ffe461ff6
+  languageName: node
+  linkType: hard
+
 "dotenv-safe@npm:^8.2.0":
   version: 8.2.0
   resolution: "dotenv-safe@npm:8.2.0"
@@ -596,6 +612,27 @@ __metadata:
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 571aeb3dbe0f2bbd4e4fadbdb44f325fc75335cd5f6f6b6a091e6a06a9f25ed5392f0863c5442acb0646787446e816f13cbfc6edce5b07658541dff573cab1ff
+  languageName: node
+  linkType: hard
+
+"exiftool.exe@npm:10.53":
+  version: 10.53.0
+  resolution: "exiftool.exe@npm:10.53.0"
+  checksum: ecddaaf8cc333889c4f3ad24e3989788d43e49a331c0d2d4db93f9d3bde408e8bc05283219ef2162f9125936c7e6c8b7a2b5073112410b5d31dc4c64a0787418
+  languageName: node
+  linkType: hard
+
+"exiftool.pl@npm:10.53":
+  version: 10.53.0
+  resolution: "exiftool.pl@npm:10.53.0"
+  checksum: e902f87c9de2c8fcf28eda76c6aee0bb00d9572028ff6f188337f20056f885bcae085e759926253e65da5efd2a57c36b9a66883d265670bd8cc99e603ad8cdd7
+  languageName: node
+  linkType: hard
+
+"exiftool@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "exiftool@npm:0.0.3"
+  checksum: 6c9abf565725d700973a0ad07e56c7cc4bca17e45093fb3446f26184f19677acd27ef1e32a8c8014109320a8927b80ee1e4ffd1f3465a85230f43827f9ff5de3
   languageName: node
   linkType: hard
 
@@ -1564,6 +1601,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"platform-dependent-modules@npm:0.0.14":
+  version: 0.0.14
+  resolution: "platform-dependent-modules@npm:0.0.14"
+  bin:
+    platform-dependent-modules: ./cli.js
+  checksum: 50efb7ce32d89d3f6066ab4281fa488272b124fe507c79ca1808361ce9ca61e46865c808f8b4f8bf92b2b87cca28453c54997a6e0433184b67e335510a801cee
+  languageName: node
+  linkType: hard
+
 "pop-iterate@npm:^1.0.1":
   version: 1.0.1
   resolution: "pop-iterate@npm:1.0.1"
@@ -2071,7 +2117,9 @@ __metadata:
     body-parser: ^1.20.0
     cookie-parser: ~1.4.3
     debug: ^2.6.8
+    dist-exiftool: ^10.53.0
     dotenv-safe: ^8.2.0
+    exiftool: ^0.0.3
     express: ^4.18.1
     ext-name: ^5.0.0
     fs: ^0.0.1-security
