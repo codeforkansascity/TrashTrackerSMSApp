@@ -54,6 +54,15 @@ Once you acquire a forwarding url from ngrok, copy and paste it in http_request_
 
 ![Example of http_request widget](./public/images/example_http_request_widget.jpg)
 
+To extract exif data from existing images, add image path to [extract-exif.js](./extract-exif.js), and run the following command:
+
+```bash
+$ node extract-exif.js
+```
+
+You will see exif data in the command line.
+
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
