@@ -15,7 +15,7 @@
     "fs": "^0.0.1-security",
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.6",
     "path": "^0.12.7",
     "serve-favicon": "^2.4.3",
     "socket.io": "^4.5.1",
