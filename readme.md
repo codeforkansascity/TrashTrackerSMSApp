@@ -9,11 +9,13 @@
 - [Usage](#usage)
 - [Local Development](#local-development)
 - [Other Usages](#other-usages)
+- [Credits](#credits)
 - [License](#license)
 
 ## Description
 
-Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message.
+Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. TrashTrackerSMS is one of the three repositories it uses. This app enables your Twilio number to receive and respond to MMS messages from the public. It allows bilingual (English and Spanish) report. Currently, the reported information will be logged in the command line. App users can also decode EXIF data stored in images. The final goal is to decode geolocation data, store conversation, location, and image in database, and display them on our website for admin and staff to track illegal dumping.
+
 
 ## Prerequisites
 
@@ -93,8 +95,12 @@ If you want to design your own app without using Twilio flow, here are some reso
 4. To send an image to your webhook url, enter the following command and go to [http://localhost:1337/](http://localhost:1337/) to see the images received.
 
     ```bash
+    $ yarn install
     $ yarn start
     ```
+
+## Credits
+Twilio documentations have been tremendous help for this project, especially the ones on [Programmable SMS](https://www.twilio.com/docs/sms/quickstart/node#sign-up-for-twilio-and-get-a-twilio-phone-number) and on [Twilio Studio](https://www.twilio.com/docs/studio/user-guide/get-started). The 4th usage of "other usages" of this repository uses almost all code from the Twilio repository [receive-mms-node](https://github.com/TwilioDevEd/receive-mms-node).
 
 ## License
 
