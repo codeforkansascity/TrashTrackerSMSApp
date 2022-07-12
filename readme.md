@@ -2,6 +2,15 @@
 
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
+## Table of Contents
+- [Description](#description)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Local Development](#local-development)
+- [Other Usages](#other-usages)
+- [License](#license)
+
 ## Description
 
 Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message.
@@ -10,6 +19,8 @@ Trash Tracker is a simple, lightweight system that allows residents and staff of
 
 - [A Twilio account](http://www.twilio.com/referral/7fB3Je)
 - [A Twilio phone number](https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account#get-your-first-twilio-phone-number)
+
+(Note: If you are using a free trial account from Twilio, your Twilio number may only message one verified phone number. See more limitations [here](https://support.twilio.com/hc/en-us/articles/360036052753-Twilio-Free-Trial-Limitations). You can refer to [twilio-trial.js](./twilio-trial.js) to set up a verified phone number.)
 
 ## Installation
 
@@ -34,7 +45,7 @@ To start the app, run the following command:
 $ node ./routes/flow.js
 ```
 
-Any users can send a text message to your Twilio phone number and start the conversation! The following photo shows an example:
+Any users can send a text message to your Twilio phone number and start the conversation (if you have upgraded your Twilio account)! The following photo shows an example:
 
 ![Example of text communication](./public/images/example_text_communication.jpg)
 
@@ -54,7 +65,7 @@ You will see exif data in the command line:
 
 ## Local Development
 
-You need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:
+You will need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:
 
 ```bash
 $ ngrok http 1337
@@ -64,18 +75,20 @@ Once you acquire a forwarding url from ngrok, copy and paste it in http_request_
 
 ![Example of http_request widget](./public/images/example_http_request_widget.png)
 
+## Other Usages
+
 If you want to design your own app without using Twilio flow, here are some resources: 
-1. To initiate a custom message, enter:
+1. To initiate or send a custom message, enter:
     ```bash
     $ node ./mms-send.js
     ```
-2. To set up an auto-generated reply to messages sent to your Twilio number, enter: 
-    ```bash
-    $ node ./routes/sms.js
-    ```
-3. To fetch a message sent to your Twilio number, enter:
+2. To fetch a message sent to your Twilio number, enter:
     ```bash
     $ node ./mms-fetch.js
+    ```
+3. To set up an auto-generated reply to messages sent to your Twilio number, enter: 
+    ```bash
+    $ node ./routes/sms.js
     ```
 4. To send an image to your webhook url, enter the following command and go to [http://localhost:1337/](http://localhost:1337/) to see the images received.
 
