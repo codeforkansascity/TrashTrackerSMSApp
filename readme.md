@@ -13,7 +13,7 @@ Trash Tracker is a simple, lightweight system that allows residents and staff of
 
 ## Installation
 
-To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from [flow.json](./public/assets/flow.json).
+To import our Twilio Studio flow, go to your Twilio studio and create a new flow. Select **Import from JSON** from the list of templates. In the next window, you can paste the Flow JSON from [flow.json](./public/assets/flow.json). Then, edit the urls in http_request_english and http_request_spanish widgets to be the url that you'd like your http requests to be sent to.
 
 <!-- Next, click on the Trigger Widget on the top and copy your webhook url from the Inspector Panel on the right hand. It should look like this:
 
@@ -28,6 +28,12 @@ Here is what the place looks like:
 
 ## Usage
 
+To start the app, run the following command:
+
+```bash
+$ node ./routes/flow.js
+```
+
 Any users can send a text message to your Twilio phone number and start the conversation! The following photo shows an example:
 
 ![Example of text communication](./public/images/example_text_communication.jpg)
@@ -36,15 +42,19 @@ After the conversation is complete, you can see the object, location, and report
 
 ![Example of log messages](./public/images/example_console_log.png)
 
-## Local Development
-
-To test local files, run the following command:
+To extract exif data from existing images, add image path and name to [extract-exif.js](./extract-exif.js), and run the following command:
 
 ```bash
-$ node ./routes/flow.js
+$ node extract-exif.js
 ```
 
-You also need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:
+You will see exif data in the command line:
+
+![Example of exif data](./public/images/example_exif.png)
+
+## Local Development
+
+You need a webhook url on the public Internet. To do that, you need to install [ngrok](https://ngrok.com/download) to expose your local network to the public Internet. After you install it and configure the authentification, open a second terminal and enter the following command:
 
 ```bash
 $ ngrok http 1337
@@ -52,16 +62,26 @@ $ ngrok http 1337
 
 Once you acquire a forwarding url from ngrok, copy and paste it in http_request_english and http_request_spanish widgets in your Twilio Studio flow. You will need to update the url everytime you run that script. The below photo shows an example.
 
-![Example of http_request widget](./public/images/example_http_request_widget.jpg)
+![Example of http_request widget](./public/images/example_http_request_widget.png)
 
-To extract exif data from existing images, add image path to [extract-exif.js](./extract-exif.js), and run the following command:
+If you want to design your own app without using Twilio flow, here are some resources: 
+1. To initiate a custom message, enter:
+    ```bash
+    $ node ./mms-send.js
+    ```
+2. To set up an auto-generated reply to messages sent to your Twilio number, enter: 
+    ```bash
+    $ node ./routes/sms.js
+    ```
+3. To fetch a message sent to your Twilio number, enter:
+    ```bash
+    $ node ./mms-fetch.js
+    ```
+4. To send an image to your webhook url, enter the following command and go to [http://localhost:1337/](http://localhost:1337/) to see the images received.
 
-```bash
-$ node extract-exif.js
-```
-
-You will see exif data in the command line.
-
+    ```bash
+    $ yarn start
+    ```
 
 ## License
 

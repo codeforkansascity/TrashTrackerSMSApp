@@ -2,7 +2,7 @@
 const execFile = require('child_process').execFile;
 const exiftool = require('dist-exiftool');
  
-execFile(exiftool, ['-j', './image.jpg'], (error, stdout, stderr) => {
+execFile(exiftool, ['-j', './public/mms_images/image.jpg'], (error, stdout, stderr) => {
     if (error) {
         console.error(`exec error: ${error}`);
         return;
