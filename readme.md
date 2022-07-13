@@ -1,4 +1,4 @@
-# TrashTrackerSMS
+# TrashTrackerSMSApp
 
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
@@ -14,8 +14,7 @@
 
 ## Description
 
-Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. TrashTrackerSMS is one of the three repositories it uses. This app enables your Twilio number to receive and respond to MMS messages from the public. It allows bilingual (English and Spanish) report. Currently, the reported information will be logged in the command line. App users can also decode EXIF data stored in images. The final goal is to decode geolocation data, store conversation, location, and image in database, and display them on our website for admin and staff to track illegal dumping.
-
+Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. TrashTrackerSMSApp is one of the three repositories it uses. This app enables your Twilio number to receive and respond to MMS messages from the public. It allows bilingual (English and Spanish) report. Currently, the reported information will be logged in the command line. App users can also decode EXIF data stored in images. The final goal is to decode geolocation data, store conversation, location, and image in database, and display them on our website for admin and staff to track illegal dumping.
 
 ## Prerequisites
 
@@ -40,12 +39,25 @@ Here is what the place looks like:
 ![The Messaging section in the configuration menu](https://twilio-cms-prod.s3.amazonaws.com/images/Screen_Shot_2022-02-09_at_7.42.46_PM.width-1600.png)
 
 ## Usage
+1. Install dependencies
 
-To start the app, run the following command:
+    ```bash
+    npm install -g yarn && \
+    yarn install
+    ```
 
-```bash
-$ node ./routes/flow.js
-```
+2. Copy the sample configuration file and edit it to match your configuration
+
+   ```bash
+   $ cp .env.EXAMPLE .env
+   ```
+   You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in your [Twilio Account Settings](https://www.twilio.com/console).
+
+3. Run the application
+
+    ```bash
+    $ node ./routes/flow.js
+    ```
 
 Any users can send a text message to your Twilio phone number and start the conversation (if you have upgraded your Twilio account)! The following photo shows an example:
 
@@ -95,7 +107,6 @@ If you want to design your own app without using Twilio flow, here are some reso
 4. To send an image to your webhook url, enter the following command and go to [http://localhost:1337/](http://localhost:1337/) to see the images received.
 
     ```bash
-    $ yarn install
     $ yarn start
     ```
 
