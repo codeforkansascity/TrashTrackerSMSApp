@@ -14,7 +14,7 @@
     "fs": "^0.0.1-security",
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.8",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "serve-favicon": "^2.4.3",
