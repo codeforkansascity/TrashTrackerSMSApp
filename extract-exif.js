@@ -1,21 +1,9 @@
-// Use npm package dist-exiftool
-const execFile = require('child_process').execFile;
-const exiftool = require('dist-exiftool');
- 
-execFile(exiftool, ['-j', './public/mms_images/image.jpg'], (error, stdout, stderr) => {
-    if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-});
-
 // Use npm package exiftool
-// var exif = require('exiftool');
-// var fs   = require('fs');
+var exif = require('exiftool');
+var fs   = require('fs');
  
-// fs.readFile('./image.jpg', function (err, data) {
+// Logging all metadata
+// fs.readFile('./public/images/extract-exif.jpeg', function (err, data) {
 //   if (err)
 //     throw err;
 //   else {
@@ -29,15 +17,22 @@ execFile(exiftool, ['-j', './public/mms_images/image.jpg'], (error, stdout, stde
 // });
 
 // Filtering metadata
-// fs.readFile('./image.jpg', ['-filesize'], function (err, data) {
-//     if (err)
-//       throw err;
-//     else {
-//       exif.metadata(data, function (err, metadata) {
-//         if (err)
-//           throw err;
-//         else
-//           console.log(metadata.fileSize); // filtering here
-//       });
-//     }
-//   });
+fs.readFile('./public/images/example_exif.png', ['-gpsLatitude', 'gpsLongitude', 'gpsPosition'], function (err, data) {
+    if (err)
+      throw err;
+    else {
+      exif.metadata(data, function (err, metadata) {
+        if (err)
+          throw err;
+        else
+            if (metadata.gpsLatitude === undefined && metadata.gpsLongitude === undefined && metadata.gpsPosition === undefined) {
+                console.log("Sorry, this image does not contain geolocation data.");
+            }
+            else {
+            console.log("GPSLatitude: " + metadata.gpsLatitude);
+            console.log("GPSLongitude: " + metadata.gpsLongitude);
+            console.log("GPSPosition: " + metadata.gpsPosition);
+            }
+      });
+    }
+  });

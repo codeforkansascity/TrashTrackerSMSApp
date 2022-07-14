@@ -73,7 +73,7 @@ To extract exif data from existing images, add image path and name to [extract-e
 $ node extract-exif.js
 ```
 
-You will see exif data in the command line:
+You will see geolocation data in the command line:
 
 ![Example of exif data](./public/images/example_exif.png)
 
