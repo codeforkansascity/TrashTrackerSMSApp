@@ -1,6 +1,6 @@
 // Use npm package exiftool
-var exif = require('exiftool');
-var fs   = require('fs');
+const exif = require('exiftool');
+const fs   = require('fs');
  
 // Logging all metadata
 // fs.readFile('./public/images/extract-exif.jpeg', function (err, data) {
@@ -17,7 +17,7 @@ var fs   = require('fs');
 // });
 
 // Filtering metadata
-fs.readFile('./public/images/example_exif.png', ['-gpsLatitude', 'gpsLongitude', 'gpsPosition'], function (err, data) {
+fs.readFile('./public/images/extract-exif.jpeg', ['-gpsLatitude', 'gpsLongitude', 'gpsPosition'], function (err, data) {
     if (err)
       throw err;
     else {
