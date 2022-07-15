@@ -1,12 +1,3 @@
-// This file can successfully log data and image URL from Twilio Studio Flow in the command line
-// Note: make sure you have configured webhook url in your Twilio console and your flow
-
-const config = require("../config");
-const Twilio = require("twilio");
-
-const { twilioAccountSid, twilioAuthToken, twilioPhoneNumber } = config;
-const client = new Twilio(twilioAccountSid, twilioAuthToken);
-
 const express = require("express");
 const fs = require("fs");
 const saveImage = require("./save_image.js");
@@ -51,30 +42,28 @@ app.post("/", (req, res) => {
               console.log("Photo is stored in ./public/assets successfully.");
               exif.metadata(data, function (err, metadata) {
                 if (err) throw err;
-                else if (
-                  metadata.gpsLatitude === undefined &&
-                  metadata.gpsLongitude === undefined &&
-                  metadata.gpsPosition === undefined
-                ) {
-                  fs.appendFile(
-                    "./public/assets/log.txt",
-                    "GPSPosition: this photo does not contain geolocation data.\n",
-                    (err) =>
-                      err
-                        ? console.log(err)
-                        : console.log("No geolocation data found in the photo.")
-                  );
-                } else {
-                  fs.appendFile(
-                    "./public/assets/log.txt",
-                    `GPSPosition: ${metadata.gpsPosition}\n`,
-                    (err) =>
-                      err
-                        ? console.log(err)
-                        : console.log(
-                            "Geolocation data extracted successfully."
-                          )
-                  );
+                else {
+                  if (metadata.gpsPosition === undefined) {
+                    fs.appendFile(
+                      "./public/assets/log.txt",
+                      "GPSPosition: this photo does not contain geolocation data.\n",
+                      (err) =>
+                        err
+                          ? console.log(err)
+                          : console.log("No geolocation data found in the photo.")
+                    );
+                  } else {
+                    fs.appendFile(
+                      "./public/assets/log.txt",
+                      `GPSPosition: ${metadata.gpsPosition}\n`,
+                      (err) =>
+                        err
+                          ? console.log(err)
+                          : console.log(
+                              "Geolocation data extracted successfully."
+                            )
+                    );
+                  }
                 }
               });
             }
