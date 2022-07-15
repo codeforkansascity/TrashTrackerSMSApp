@@ -47,13 +47,13 @@ fs.readFile('./public/images/extract-exif.jpeg', ['-gpsPosition'], function (err
           throw err;
         else
             if (metadata.gpsLatitude === undefined && metadata.gpsLongitude === undefined && metadata.gpsPosition === undefined) {
-                fs.writeFile('log.txt', "Sorry, this image does not contain geolocation data.", (err) => 
+                fs.appendFile('./public/assets/log.txt', "Sorry, this image does not contain geolocation data.\n", (err) => 
                     err ? console.log(err) : console.log("Sorry, this image does not contain geolocation data.")
                 );
             }
             else {
-                fs.writeFile('log.txt', `GPSPosition: ${metadata.gpsPosition}`, (err) => 
-                    err ? console.log(err) : console.log("Data are logged to log.txt successfully.")
+                fs.appendFile('./public/assets/log.txt', `GPSPosition: ${metadata.gpsPosition}\n`, (err) => 
+                    err ? console.log(err) : console.log("Data are logged to ./public/assets/log.txt successfully.")
                 );
             }
       });
