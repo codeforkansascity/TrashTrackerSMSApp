@@ -47,7 +47,7 @@ fs.readFile('./public/images/extract-exif.jpeg', ['-gpsPosition'], function (err
           throw err;
         else
             if (metadata.gpsLatitude === undefined && metadata.gpsLongitude === undefined && metadata.gpsPosition === undefined) {
-                fs.appendFile('./public/assets/log.txt', "Sorry, this image does not contain geolocation data.\n", (err) => 
+                fs.appendFile('./public/assets/log.txt', "GPSPosition: Sorry, this image does not contain geolocation data.\n", (err) => 
                     err ? console.log(err) : console.log("Sorry, this image does not contain geolocation data.")
                 );
             }

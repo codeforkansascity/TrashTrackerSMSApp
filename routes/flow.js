@@ -8,6 +8,7 @@ const { twilioAccountSid, twilioAuthToken, twilioPhoneNumber } = config;
 const client = new Twilio(twilioAccountSid, twilioAuthToken);
 
 const express = require("express");
+const fs   = require('fs');
 
 const app = express();
 const PORT = 1337;
@@ -20,7 +21,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  fs.appendFile('./public/assets/log.txt', `New report: \n${JSON.stringify(req.body)}\n`, (err) => 
+    err ? console.log(err) : console.log("Data are logged to ./public/assets/log.txt successfully.")
+  );
   res.end();
 });
 

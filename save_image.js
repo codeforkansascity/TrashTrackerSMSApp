@@ -34,16 +34,3 @@ download('https://d.newsweek.com/en/full/2006008/dog-field.jpg?w=1600&h=1600&q=8
   });
 });
 
-// Logging all metadata
-// fs.readFile('./public/images/extract-exif.jpeg', function (err, data) {
-//   if (err)
-//     throw err;
-//   else {
-//     exif.metadata(data, function (err, metadata) {
-//       if (err)
-//         throw err;
-//       else
-//         console.log(metadata);
-//     });
-//   }
-// });
