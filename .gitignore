@@ -56,3 +56,5 @@ build/Release
 .node_repl_history
 
 public/mms_images
+# public/assets/log.txt
+# public/assets/image.jpg
