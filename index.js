@@ -2,7 +2,7 @@
 const app = require('./app');
 const debug = require('debug')('receive-mms-node:server');
 const http = require('http');
-const cfg = require('./config');
+const cfg = require('./config/config.js');
 
 // Normalize a port into a number, string, or false.
 function normalizePort(val) {

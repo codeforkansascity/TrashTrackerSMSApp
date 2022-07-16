@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const fs = require("fs");
 const saveImage = require("./save_image.js");
 const exif = require("exiftool");
@@ -9,8 +10,8 @@ const PORT = 1337;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to Trash Tracker!");
+app.get("/", async (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/assets/log.txt'));
 });
 
 app.post("/", (req, res) => {
@@ -21,7 +22,7 @@ app.post("/", (req, res) => {
       err
         ? console.log(err)
         : console.log(
-            "General data are logged to ./public/assets/log.txt successfully."
+            "\nNew report: \nGeneral data are logged to ./public/assets/log.txt successfully."
           )
   );
   if (req.body.photo_url === "") {
@@ -50,7 +51,7 @@ app.post("/", (req, res) => {
                       (err) =>
                         err
                           ? console.log(err)
-                          : console.log("No geolocation data found in the photo.")
+                          : console.log("No geolocation data are found in the photo.")
                     );
                   } else {
                     fs.appendFile(
@@ -60,7 +61,7 @@ app.post("/", (req, res) => {
                         err
                           ? console.log(err)
                           : console.log(
-                              "Geolocation data extracted successfully."
+                              "Geolocation data are extracted successfully."
                             )
                     );
                   }

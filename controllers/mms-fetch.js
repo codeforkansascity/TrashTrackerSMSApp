@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config/config.js');
 const Twilio = require('twilio');
 
 const { twilioAccountSid, twilioAuthToken, twilioPhoneNumber } = config;

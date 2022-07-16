@@ -34,7 +34,7 @@ Trash Tracker is a simple, lightweight system that allows residents and staff of
 To run the application, enter:
 
     ```bash
-    $ node ./routes/flow.js
+    $ node ./controllers/flow.js
     ```
 
 Any users can send a text message to our Twilio phone number (816) 608-6096 and start the conversation! The following photo shows an example:
@@ -72,15 +72,15 @@ Once you acquire a forwarding url from ngrok, copy and paste it in http_request_
 If you want to design your own app without using Twilio flow, here are some resources: 
 1. To initiate or send a custom message, enter:
     ```bash
-    $ node ./mms-send.js
+    $ node ./controllers/mms-send.js
     ```
 2. To fetch a message sent to your Twilio number, enter:
     ```bash
-    $ node ./mms-fetch.js
+    $ node ./controllers/mms-fetch.js
     ```
 3. To set up an auto-generated reply to messages sent to your Twilio number, enter: 
     ```bash
-    $ node ./routes/sms.js
+    $ node ./controllers/sms.js
     ```
 4. To send an image to your webhook url, enter the following command and go to [http://localhost:1337/](http://localhost:1337/) to see the images received.
 
