@@ -1,5 +1,4 @@
 const fs = require('fs');
-const exif = require('exiftool');
 const request = require('request');
 
 const download = function(uri, filename, callback){

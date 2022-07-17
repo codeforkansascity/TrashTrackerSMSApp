@@ -13,7 +13,7 @@
 
 ## Description
 
-Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. This app records the reporting messages.
+Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. This app is one of its three repositories. It performs the function of recording the reporting messages.
 
 ## Installation
 1. Install dependencies
@@ -41,19 +41,7 @@ Any users can send a text message to our Twilio phone number (816) 608-6096 and 
 
 ![Example of text communication](./public/images/example_text_communication.jpg)
 
-After the conversation is complete, you can see the object, location, and reporting number logged in the command line.
-
-![Example of log messages](./public/images/example_console_log.png)
-
-To extract exif data from existing images, add image path and name to [extract-exif.js](./extract-exif.js), and run the following command:
-
-```bash
-$ node extract-exif.js
-```
-
-You will see geolocation data in the command line:
-
-![Example of exif data](./public/images/example_exif.png)
+After the conversation is complete, you can go to http://localhost:1337/ to see the reporting information.
 
 ## Local Development
 
