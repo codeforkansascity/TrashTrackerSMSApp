@@ -4,6 +4,7 @@
 
 ## Table of Contents
 - [Description](#description)
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Local Development](#local-development)
@@ -14,6 +15,9 @@
 ## Description
 
 Trash Tracker is a simple, lightweight system that allows residents and staff of the Lykins neighborhood to report illegal dumping with a simple text message. This app is one of its three repositories. It performs the function of recording the reporting messages.
+
+## Prerequisites
+* Install [Node](https://nodejs.org/en/download/)
 
 ## Installation
 1. Install dependencies
