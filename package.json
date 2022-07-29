@@ -5,7 +5,7 @@
   "main": "twilio.js",
   "dependencies": {
     "@aws-amplify/ui-react": "^3.2.1",
-    "aws-amplify": "^4.3.28",
+    "aws-amplify": "^4.3.29",
     "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.3",
     "debug": "^2.6.8",
