@@ -4,7 +4,7 @@
   "description": "a simple, lightweight system that allows residents and staff of the neighborhood to report illegal dumping",
   "main": "twilio.js",
   "dependencies": {
-    "@aws-amplify/ui-react": "^3.2.1",
+    "@aws-amplify/ui-react": "^3.5.2",
     "aws-amplify": "^4.3.28",
     "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.3",
