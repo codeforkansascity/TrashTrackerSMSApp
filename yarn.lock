@@ -4258,9 +4258,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.5.tgz"
 
-twilio@^3.77.2:
-  version "3.77.2"
-  resolved "https://registry.npmjs.org/twilio/-/twilio-3.77.2.tgz"
+twilio@^3.84.1:
+  version "3.84.1"
+  resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.84.1.tgz#b7a64db440240d3a06cc591fd339b81ca9b70db0"
   dependencies:
     axios "^0.26.1"
     dayjs "^1.8.29"
