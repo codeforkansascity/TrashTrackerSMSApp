@@ -20,7 +20,7 @@
     "path": "^0.12.7",
     "request": "^2.88.2",
     "serve-favicon": "^2.4.3",
-    "socket.io": "^4.5.2",
+    "socket.io": "^4.6.0",
     "twilio": "^3.77.2",
     "url": "^0.11.0",
     "yarn": "^1.22.19"
