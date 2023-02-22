@@ -6,7 +6,7 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^3.2.1",
     "aws-amplify": "^4.3.28",
-    "body-parser": "^1.20.0",
+    "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.3",
     "debug": "^2.6.8",
     "dotenv-safe": "^8.2.0",
